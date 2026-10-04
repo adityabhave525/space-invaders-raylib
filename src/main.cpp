@@ -1,4 +1,5 @@
 #include <raylib.h>
+#include "game.hpp"
 
 int main() 
 {
@@ -11,11 +12,17 @@ int main()
 
     SetTargetFPS(60);
 
+    Game game;
+
     while (!WindowShouldClose())
     {
+        game.HandleInput();
+
         BeginDrawing();
         ClearBackground(grey);
-        
+
+        game.Draw();
+
         EndDrawing();
     }
 
