@@ -17,6 +17,7 @@ public:
     int lives;
     int score;
     int high_score;
+    Music music;
 
 private:
     void DeleteInactiveLasers();
@@ -42,4 +43,5 @@ private:
     MysteryShip mysteryship;
     float mystery_ship_spawn_interval;
     float time_last_spawn;
+    Sound explosion_sound;
 };

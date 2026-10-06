@@ -4,12 +4,17 @@
 
 Game::Game()
 {
+    music = LoadMusicStream("Sounds/music.ogg");
+    explosion_sound = LoadSound("Sounds/explosion.ogg");
+    PlayMusicStream(music);
     InitGame();
 }
 
 Game::~Game()
 {
     Alien::UnloadImages();
+    UnloadMusicStream(music);
+    UnloadSound(explosion_sound);
 }
 
 void Game::Update()
@@ -230,6 +235,7 @@ void Game::CheckForCollisions()
         {
             if (CheckCollisionRecs(it->getRect(), laser.getRect()))
             {
+                PlaySound(explosion_sound);
                 if (it->type == 1)
                 {
                     score += 100;
@@ -279,6 +285,7 @@ void Game::CheckForCollisions()
 
             score += 500;
             checkForHighscore();
+            PlaySound(explosion_sound);
         }
     }
 

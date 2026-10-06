@@ -19,6 +19,7 @@ int main()
     int window_height = 700;
 
     InitWindow(window_width + offset, window_height + 2 * offset, "Space Invaders Raylib");
+    InitAudioDevice();
 
     Font font = LoadFontEx("Font/monogram.ttf", 64, 0, 0);
     Texture2D spaceship_image = LoadTexture("Graphics/spaceship.png");
@@ -29,6 +30,8 @@ int main()
 
     while (!WindowShouldClose())
     {
+        UpdateMusicStream(game.music);
+
         game.HandleInput();
         game.Update();
 
@@ -66,4 +69,5 @@ int main()
     }
 
     CloseWindow();
+    CloseAudioDevice();
 }
