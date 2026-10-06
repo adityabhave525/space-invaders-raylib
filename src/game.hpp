@@ -15,6 +15,7 @@ public:
     void HandleInput();
     bool run;
     int lives;
+    int score;
 
 private:
     void DeleteInactiveLasers();

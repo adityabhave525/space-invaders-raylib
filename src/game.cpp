@@ -41,8 +41,11 @@ void Game::Update()
         mysteryship.Update();
         CheckForCollisions();
         // std::cout << "Vector Size: " << spaceship.lasers.size() << '\n';
-    } else {
-        if (IsKeyDown(KEY_ENTER)){
+    }
+    else
+    {
+        if (IsKeyDown(KEY_ENTER))
+        {
             Reset();
             InitGame();
         }
@@ -226,6 +229,19 @@ void Game::CheckForCollisions()
         {
             if (CheckCollisionRecs(it->getRect(), laser.getRect()))
             {
+                if (it->type == 1)
+                {
+                    score += 100;
+                }
+                else if (it->type == 2)
+                {
+                    score += 200;
+                }
+                else if (it->type == 3)
+                {
+                    score += 300;
+                }
+
                 it = aliens.erase(it);
                 laser.active = false;
             }
@@ -258,6 +274,8 @@ void Game::CheckForCollisions()
         {
             mysteryship.alive = false;
             laser.active = false;
+
+            score += 500;
         }
     }
 
@@ -324,8 +342,6 @@ void Game::GameOver()
     run = false;
 }
 
-
-
 void Game::InitGame()
 {
     obstacles = CreateObstacles();
@@ -334,9 +350,9 @@ void Game::InitGame()
     time_last_alien_fired = 0.0;
     time_last_spawn = 0.0;
     lives = 3;
+    score = 0;
     run = true;
     mystery_ship_spawn_interval = GetRandomValue(10, 20);
-
 }
 
 void Game::Reset()
@@ -344,5 +360,5 @@ void Game::Reset()
     spaceship.Reset();
     aliens.clear();
     alien_lasers.clear();
-    obstacles.clear();   
+    obstacles.clear();
 }
