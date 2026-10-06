@@ -9,6 +9,7 @@ public:
     void Draw();
     int GetType();
     static void UnloadImages();
+    Rectangle getRect();
     static Texture2D alien_images[3];
     int type;
     Vector2 position;
